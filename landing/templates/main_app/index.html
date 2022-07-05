@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/slimselect.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main_app/index.css' %}">
+{% endblock links %}
+{% block content %}
+    <div class="about-us-box">
+        <h2 class="text-center mb-3">что-то о сервисе</h2>
+    </div>
+    <div class="container">
+        <h2 class="text-center mb-3">Объявления</h2>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 col-xxl-3 mb-5">
+                <div class="card аdvertisement-card" style="width: 18rem;">
+                    <img src="https://i.pinimg.com/originals/ee/c4/3a/eec43acaece71979f44ed48e17d5d9de.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title name">Card title</h5>
+                        <p class="card-text address-box">
+                            <span class="address">address</span>
+                        </p>
+                    </div>
+                    <a href="#" class="more-detailed">Подробнее</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 col-xxl-3 mb-5">
+                <div class="card аdvertisement-card" style="width: 18rem;">
+                    <img src="https://i.pinimg.com/originals/ee/c4/3a/eec43acaece71979f44ed48e17d5d9de.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title name">Card title</h5>
+                        <p class="card-text address-box">
+                            <span class="address">address</span>
+                        </p>
+                    </div>
+                    <a href="#" class="more-detailed">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+
+{% endblock scripts %}
