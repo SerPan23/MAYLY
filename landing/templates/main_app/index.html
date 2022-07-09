@@ -6,36 +6,33 @@
 {% endblock links %}
 {% block content %}
     <div class="about-us-box">
-        <h2 class="text-center mb-3">что-то о сервисе</h2>
+        <div class="box">
+            <h4 class="text-center">С нами комфортно путешествовать по России: мгновенно бронируйте квартиры и номера в отелях без участия арендодателей. Мы заботимся о вас и ваших интересах, поэтому обратите внимание на описание жилья - там указаны ближайшие кафе, рестораны, парки и другие объекты.</h4>
+        </div>
     </div>
     <div class="container">
         <h2 class="text-center mb-3">Объявления</h2>
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-4 col-xxl-3 mb-5">
-                <div class="card advertisement-card" style="width: 18rem;">
-                    <img src="https://i.pinimg.com/originals/ee/c4/3a/eec43acaece71979f44ed48e17d5d9de.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title name">Домик на озере 1</h5>
-                        <p class="card-text address-box">
-                            <span class="address">address</span>
-                        </p>
+            {% for apartment in apartments %}
+                <div class="col-12 col-md-6 col-lg-4 col-xxl-3 mb-5">
+                    <div class="card advertisement-card" style="width: 18rem;">
+                        {% with apartment.images.all|first as img %}
+                            <div class="img-box">
+                                <img src="{{ img.image.url }}" class="card-img-top" alt="...">
+                            </div>
+                        {% endwith %}
+                        <div class="card-body">
+                            <h5 class="card-title name">{{ apartment.name }}</h5>
+                            <p class="card-text address-box">
+                                <span class="address">{{ apartment.address }}</span>
+                            </p>
+                        </div>
+                        <a href="/advertisement/{{ apartment.id }}" class="more-detailed">Подробнее</a>
                     </div>
-                    <a href="/advertisement/1" class="more-detailed">Подробнее</a>
                 </div>
-            </div>
-            <!--            -->
-            <div class="col-12 col-md-6 col-lg-4 col-xxl-3 mb-5">
-                <div class="card advertisement-card" style="width: 18rem;">
-                    <img src="https://i.pinimg.com/originals/ee/c4/3a/eec43acaece71979f44ed48e17d5d9de.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title name">Домик на озере 2</h5>
-                        <p class="card-text address-box">
-                            <span class="address">address</span>
-                        </p>
-                    </div>
-                    <a href="/advertisement/2" class="more-detailed">Подробнее</a>
-                </div>
-            </div>
+            {% empty %}
+                <h3 class="text-center">В данный момент все жильё к сожалению занято</h3>
+            {% endfor %}
         </div>
     </div>
 {% endblock content %}

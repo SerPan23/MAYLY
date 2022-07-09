@@ -22,6 +22,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-aak8oxn6pulqd=w3*^z0^ty_&!8l2w)+42opa2fzf8%j=mrq&x'
 
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'admin@celevik.site'
+EMAIL_HOST_PASSWORD = 'Ewqdsacxz!23'
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'admin@celevik.site'
+EMAIL_TOPIC = 'MAYLY'
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
