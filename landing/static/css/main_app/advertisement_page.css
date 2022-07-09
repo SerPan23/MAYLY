@@ -194,4 +194,21 @@ nav .dropdown-item {
   font-size: 1.1rem;
 }
 
+.air-datepicker-body--day-name {
+  color: #7A7DF5 !important;
+}
+
+.air-datepicker-button, .air-datepicker-cell.-day-.-current- {
+  color: #176DEA !important;
+}
+
+.air-datepicker-cell.-day-.-selected- {
+  background-color: #176DEA !important;
+  color: #ffffff !important;
+}
+
+.air-datepicker-cell.-in-range- {
+  background-color: rgba(23, 109, 234, 0.2) !important;
+}
+
 /*# sourceMappingURL=advertisement_page.css.map */
