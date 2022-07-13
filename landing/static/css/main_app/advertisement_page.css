@@ -211,4 +211,8 @@ nav .dropdown-item {
   background-color: rgba(23, 109, 234, 0.2) !important;
 }
 
+.room_in_hotel:hover {
+  border: 2px solid #176DEA;
+}
+
 /*# sourceMappingURL=advertisement_page.css.map */
