@@ -15,12 +15,31 @@ class SearchPage extends StatelessWidget {
     return GetBuilder<SearchPageController>(
       init: SearchPageController(),
       builder: (controller) {
-        return Container(
-          child: Center(
-            child: Column(
-              children: [
-                SearchBar(),
-              ],
+        return Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(100.h),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: kShadowColor,
+                    spreadRadius: 0,
+                    blurRadius: 6,
+                    offset: Offset(0, 2.h),
+                  ),
+                ],
+              ),
+              child: Center(
+                child: SearchBar(c: controller),
+              ),
+            ),
+          ),
+          body: Container(
+            child: Center(
+              child: Column(
+                children: [],
+              ),
             ),
           ),
         );
@@ -32,8 +51,9 @@ class SearchPage extends StatelessWidget {
 class SearchBar extends StatelessWidget {
   const SearchBar({
     Key? key,
+    required this.c,
   }) : super(key: key);
-
+  final SearchPageController c;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,12 +62,12 @@ class SearchBar extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: kShadowColor,
-            spreadRadius: 0,
-            blurRadius: 66,
-            offset: Offset(0, -2.h),
+            spreadRadius: 1,
+            blurRadius: 10,
+            offset: Offset(0, 0),
           ),
         ],
         borderRadius: BorderRadius.all(Radius.circular(30.r)),
@@ -60,20 +80,66 @@ class SearchBar extends StatelessWidget {
         openColor: Colors.transparent,
         transitionType: ContainerTransitionType.fade,
         transitionDuration: const Duration(milliseconds: 700),
-        openBuilder: (context, _) => SearchFiltersPage(),
+        openBuilder: (context, _) => SearchFiltersPage(data: c.collectData()),
         closedBuilder: (context, action) => Material(
           color: Colors.transparent,
           child: InkWell(
             onTap: action,
-            // onTap: () {
-            //   Get.to(SearchFiltersPage(), transition: Transition.zoom);
-            // },
             borderRadius: BorderRadius.all(Radius.circular(30.r)),
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
               child: Row(
-                children: const [
+                children: [
                   Icon(CupertinoIcons.search),
+                  SizedBox(
+                    width: 15.w,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        c.place ?? "Куда?",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18.sp),
+                      ),
+                      const Spacer(),
+                      Row(
+                        children: [
+                          if (c.place == null)
+                            Text(
+                              "искать везде",
+                              style: TextStyle(
+                                color: kTextAltColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                          if (c.place == null)
+                            SizedBox(
+                              width: 5.w,
+                            ),
+                          if (c.startDate == null || c.endDate == null)
+                            Text(
+                              "любые даты",
+                              style: TextStyle(
+                                color: kTextAltColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                          if (c.startDate != null || c.endDate != null)
+                            Text(
+                              "${c.startDate} - ${c.endDate}",
+                              style: TextStyle(
+                                color: kTextAltColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                        ],
+                      )
+                    ],
+                  )
                 ],
               ),
             ),

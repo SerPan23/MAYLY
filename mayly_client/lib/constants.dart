@@ -7,6 +7,11 @@ const kShadowColor = Color.fromRGBO(73, 74, 77, 0.15);
 
 const kTextAltColor = Color.fromRGBO(162, 163, 163, 1);
 
+// const kBrandColor = Color.fromRGBO(23, 109, 234, 1);
+const kBrandColor = Color.fromRGBO(78, 7, 168, 1);
+
+const kPurpleColor = Color.fromRGBO(122, 125, 245, 1);
+
 const kTransparentUiOverlay = SystemUiOverlayStyle(
   // Status bar color
   statusBarColor: Colors.transparent,

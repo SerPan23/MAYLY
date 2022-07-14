@@ -1,3 +1,4 @@
+import 'package:field_suggestion/field_suggestion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -5,14 +6,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mayly_client/constants.dart';
 import 'package:mayly_client/controllers/SearchFiltersPageController.dart';
+import 'package:mayly_client/controllers/SearchPageController.dart';
+import 'package:mayly_client/pages/SearchPage.dart';
+import 'package:mayly_client/widgets/Buttons.dart';
 import 'package:mayly_client/widgets/ElevatedContainer.dart';
 
 class SearchFiltersPage extends StatelessWidget {
-  const SearchFiltersPage({Key? key}) : super(key: key);
+  final dynamic data;
+  const SearchFiltersPage({Key? key, this.data}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBgColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
@@ -39,7 +44,7 @@ class SearchFiltersPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: GetBuilder<SearchFiltersPageController>(
-          init: SearchFiltersPageController(),
+          init: SearchFiltersPageController(data: data),
           builder: (controller) {
             return Column(
               children: [
@@ -54,7 +59,37 @@ class SearchFiltersPage extends StatelessWidget {
                   child: Material(
                     color: Colors.transparent,
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        var placetmp;
+                        Get.defaultDialog(
+                          content: AutocompleteBasicExample(c: controller),
+                          confirm: CupertinoButton(
+                            onPressed: () {
+                              controller.updatePlace(controller.placetmp);
+                              Get.back();
+                            },
+                            child: Text(
+                              "Добавить",
+                              style: TextStyle(
+                                color: Color.fromRGBO(0, 183, 74, 1),
+                                fontSize: 18.sp,
+                              ),
+                            ),
+                          ),
+                          cancel: CupertinoButton(
+                            child: Text(
+                              "Отмена",
+                              style: TextStyle(
+                                color: Color.fromRGBO(249, 49, 84, 1),
+                                fontSize: 18.sp,
+                              ),
+                            ),
+                            onPressed: () {
+                              Get.back();
+                            },
+                          ),
+                        );
+                      },
                       borderRadius: BorderRadius.all(Radius.circular(30.r)),
                       child: Container(
                         padding: EdgeInsets.symmetric(
@@ -62,14 +97,19 @@ class SearchFiltersPage extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              "Где искать:",
+                              "Куда:",
                               style: TextStyle(
                                 color: kTextAltColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Spacer(),
-                            Text("гибкий поиск"),
+                            // if (controller.startDate != null)
+                            //   Text("${controller.place}"),
+                            // if (controller.startDate == null)
+                            //   Text("искать везде"),
+
+                            Text(controller.place ?? "искать везде"),
                           ],
                         ),
                       ),
@@ -109,31 +149,160 @@ class SearchFiltersPage extends StatelessWidget {
                             vertical: 5.h, horizontal: 15.w),
                         child: Row(
                           children: [
-                            if (controller.startDate != null)
-                              Text(
-                                "Когда: ",
-                                style: TextStyle(
-                                  color: kTextAltColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            const Text(
+                              "Когда: ",
+                              style: TextStyle(
+                                color: kTextAltColor,
+                                fontWeight: FontWeight.bold,
                               ),
-                            if (controller.startDate != null) Spacer(),
+                            ),
+                            const Spacer(),
                             if (controller.startDate != null)
                               Text(
                                   "${controller.startDate} - ${controller.endDate}"),
                             if (controller.startDate == null)
-                              Text("Выберите даты")
+                              const Text("любые даты")
                           ],
                         ),
                       ),
                     ),
                   ),
                 ),
+                Spacer(),
+                BaseButton(
+                  width: 200.w,
+                  height: 50.h,
+                  action: () {
+                    Get.delete<SearchPageController>();
+                    Get.offAll(
+                      () => SearchPage(),
+                      arguments: {
+                        "is_filtering": true,
+                        "startDate": controller.startDate,
+                        "endDate": controller.endDate,
+                        "place": controller.place,
+                      },
+                    );
+                  },
+                  padding:
+                      EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
+                  color: kBrandColor,
+                  text: Text(
+                    "Искать",
+                    style: TextStyle(color: Colors.white, fontSize: 20.sp),
+                  ),
+                ),
+                SizedBox(
+                  height: 10.h,
+                )
               ],
             );
           },
         ),
       ),
+    );
+  }
+}
+
+class Utils {
+  // Generates acceptable max height for Suggestion Box.
+  static double maxBoxHeight({
+    required int? sizeByItem,
+    required int matchers,
+  }) {
+    final size = 60.0;
+
+    // Set size by [sizeByItem].
+    if (sizeByItem != null) return size * sizeByItem;
+
+    // Set size by [matchers].
+    return size * ((matchers > 3) ? 4 : matchers);
+  }
+}
+
+class AutocompleteBasicExample extends StatelessWidget {
+  const AutocompleteBasicExample({Key? key, required this.c}) : super(key: key);
+  final SearchFiltersPageController c;
+  @override
+  Widget build(BuildContext context) {
+    return RawAutocomplete(
+      optionsBuilder: (TextEditingValue textEditingValue) async {
+        if (textEditingValue.text == '') {
+          return const Iterable<String>.empty();
+        } else {
+          List<String> matches =
+              await c.fetchSuggestions(textEditingValue.text.toLowerCase());
+          return matches;
+        }
+      },
+      onSelected: (String selection) {
+        print('You just selected $selection');
+        c.placetmp = selection;
+      },
+      fieldViewBuilder: (BuildContext context,
+          TextEditingController textEditingController,
+          FocusNode focusNode,
+          VoidCallback onFieldSubmitted) {
+        return TextField(
+          decoration: InputDecoration(border: OutlineInputBorder()),
+          controller: textEditingController,
+          focusNode: focusNode,
+          onSubmitted: (String value) {},
+        );
+      },
+      optionsViewBuilder: (BuildContext context,
+          void Function(String) onSelected, Iterable<String> options) {
+        return Align(
+          alignment: Alignment.topLeft,
+          child: Opacity(
+            opacity: 1,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width,
+                maxHeight: Utils.maxBoxHeight(
+                  matchers: options.length,
+                  sizeByItem: 30,
+                ),
+              ),
+              child: Material(
+                color: Colors.white,
+                elevation: 2,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: options.map(
+                      (opt) {
+                        return Container(
+                          child: Material(
+                            color: Colors.transparent,
+                            elevation: 0,
+                            child: InkWell(
+                              onTap: () {
+                                onSelected(opt);
+                              },
+                              child: Container(
+                                width: 240.w,
+                                padding: EdgeInsets.all(10),
+                                child: Text(
+                                  opt,
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ).toList(),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

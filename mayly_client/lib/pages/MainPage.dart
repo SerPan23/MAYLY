@@ -18,7 +18,7 @@ class MainPage extends StatelessWidget {
             appBar: AppBar(
               elevation: 0,
               toolbarHeight: 0,
-              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.white,
               systemOverlayStyle: kWhiteUiOverlay,
             ),
             body: SafeArea(
