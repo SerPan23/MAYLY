@@ -62,6 +62,7 @@ class SearchFiltersPage extends StatelessWidget {
                       onTap: () {
                         var placetmp;
                         Get.defaultDialog(
+                          title: "Выберите город:",
                           content: AutocompleteBasicExample(c: controller),
                           confirm: CupertinoButton(
                             onPressed: () {
@@ -244,7 +245,10 @@ class AutocompleteBasicExample extends StatelessWidget {
           FocusNode focusNode,
           VoidCallback onFieldSubmitted) {
         return TextField(
-          decoration: InputDecoration(border: OutlineInputBorder()),
+          decoration: InputDecoration(
+            border: UnderlineInputBorder(),
+            label: Text("Город"),
+          ),
           controller: textEditingController,
           focusNode: focusNode,
           onSubmitted: (String value) {},
