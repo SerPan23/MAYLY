@@ -1,24 +1,21 @@
 import 'package:get/get.dart';
+import 'package:mayly_client/models/FiltersModel.dart';
 
 class SearchPageController extends GetxController {
-  dynamic startDate, endDate, place;
+  Filters filters = Filters();
   @override
   void onInit() {
     super.onInit();
     var args = Get.arguments;
     print(args);
     if (args != null) {
-      startDate = args["startDate"];
-      endDate = args["endDate"];
-      place = args["place"];
+      filters = args["filters"];
     }
   }
 
   dynamic collectData() {
     return {
-      "startDate": startDate,
-      "endDate": endDate,
-      "place": place,
+      "filters": filters,
     };
   }
 }

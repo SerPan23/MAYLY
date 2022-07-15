@@ -98,14 +98,14 @@ class SearchBar extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        c.place ?? "Куда?",
+                        c.filters.place ?? "Куда?",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18.sp),
                       ),
                       const Spacer(),
                       Row(
                         children: [
-                          if (c.place == null)
+                          if (c.filters.place == null)
                             Text(
                               "искать везде",
                               style: TextStyle(
@@ -114,11 +114,12 @@ class SearchBar extends StatelessWidget {
                                 fontSize: 12.sp,
                               ),
                             ),
-                          if (c.place == null)
+                          if (c.filters.place == null)
                             SizedBox(
                               width: 5.w,
                             ),
-                          if (c.startDate == null || c.endDate == null)
+                          if (c.filters.startDate == null ||
+                              c.filters.endDate == null)
                             Text(
                               "любые даты",
                               style: TextStyle(
@@ -127,9 +128,10 @@ class SearchBar extends StatelessWidget {
                                 fontSize: 12.sp,
                               ),
                             ),
-                          if (c.startDate != null || c.endDate != null)
+                          if (c.filters.startDate != null ||
+                              c.filters.endDate != null)
                             Text(
-                              "${c.startDate} - ${c.endDate}",
+                              "${c.filters.startDate} - ${c.filters.endDate}",
                               style: TextStyle(
                                 color: kTextAltColor,
                                 fontWeight: FontWeight.bold,

@@ -110,7 +110,7 @@ class SearchFiltersPage extends StatelessWidget {
                             // if (controller.startDate == null)
                             //   Text("искать везде"),
 
-                            Text(controller.place ?? "искать везде"),
+                            Text(controller.filters.place ?? "искать везде"),
                           ],
                         ),
                       ),
@@ -158,10 +158,10 @@ class SearchFiltersPage extends StatelessWidget {
                               ),
                             ),
                             const Spacer(),
-                            if (controller.startDate != null)
+                            if (controller.filters.startDate != null)
                               Text(
-                                  "${controller.startDate} - ${controller.endDate}"),
-                            if (controller.startDate == null)
+                                  "${controller.filters.startDate} - ${controller.filters.endDate}"),
+                            if (controller.filters.startDate == null)
                               const Text("любые даты")
                           ],
                         ),
@@ -179,9 +179,7 @@ class SearchFiltersPage extends StatelessWidget {
                       () => SearchPage(),
                       arguments: {
                         "is_filtering": true,
-                        "startDate": controller.startDate,
-                        "endDate": controller.endDate,
-                        "place": controller.place,
+                        "filters": controller.filters,
                       },
                     );
                   },

@@ -1,16 +1,15 @@
 import 'package:get/get.dart';
 import 'package:mayly_client/controllers/SearchPageController.dart';
+import 'package:mayly_client/models/FiltersModel.dart';
 
 class SearchFiltersPageController extends GetxController {
   SearchFiltersPageController({this.data});
   final dynamic data;
-  dynamic startDate, endDate, placetmp;
-  dynamic place;
+  Filters filters = Filters();
+  dynamic placetmp;
 
   void checkOldFilters() {
-    startDate = data['startDate'];
-    endDate = data['endDate'];
-    place = data['place'];
+    filters = data['filters'];
     print('check');
   }
 
@@ -24,14 +23,14 @@ class SearchFiltersPageController extends GetxController {
   void selectDate(dynamic picked) {
     dynamic t1 = picked.start.toString().split('-');
     dynamic t2 = picked.end.toString().split('-');
-    startDate = t1[2].split(' ')[0] + '.' + t1[1] + '.' + t1[0];
-    endDate = t2[2].split(' ')[0] + '.' + t2[1] + '.' + t2[0];
+    filters.startDate = t1[2].split(' ')[0] + '.' + t1[1] + '.' + t1[0];
+    filters.endDate = t2[2].split(' ')[0] + '.' + t2[1] + '.' + t2[0];
     update();
   }
 
   void updatePlace(dynamic placetmp) {
-    place = placetmp;
-    print(place);
+    filters.place = placetmp;
+    print(filters.place);
     update();
   }
 
