@@ -4,8 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mayly_client/constants.dart';
 import 'package:mayly_client/controllers/SearchPageController.dart';
+import 'package:mayly_client/models/ApartmentModel.dart';
 import 'package:mayly_client/pages/SearchFiltersPage.dart';
 import 'package:animations/animations.dart';
+import 'package:mayly_client/widgets/ApartmentBlock.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class SearchPage extends StatelessWidget {
       init: SearchPageController(),
       builder: (controller) {
         return Scaffold(
+          backgroundColor: kBgColor,
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(100.h),
             child: Container(
@@ -35,11 +38,30 @@ class SearchPage extends StatelessWidget {
               ),
             ),
           ),
-          body: Container(
-            child: Center(
-              child: Column(
-                children: [],
-              ),
+          body: Center(
+            child: Column(
+              children: [
+                Expanded(
+                  child: FutureBuilder<List<Apartment>>(
+                    future: controller.fetchApartments(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          padding: EdgeInsets.only(top: 35.h),
+                          itemCount: snapshot.data?.length,
+                          itemBuilder: (context, index) =>
+                              ApartmentBloc(apartment: snapshot.data![index]),
+                        );
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         );
@@ -65,7 +87,7 @@ class SearchBar extends StatelessWidget {
         boxShadow: const [
           BoxShadow(
             color: kShadowColor,
-            spreadRadius: 1,
+            spreadRadius: 0,
             blurRadius: 10,
             offset: Offset(0, 0),
           ),

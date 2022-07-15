@@ -37,7 +37,7 @@ class BottomNavigation extends StatelessWidget {
                   size: 30.r,
                 ),
                 title: Text("Поиск"),
-                selectedColor: Colors.purple,
+                selectedColor: kBrandColor,
               ),
               SalomonBottomBarItem(
                 icon: Icon(

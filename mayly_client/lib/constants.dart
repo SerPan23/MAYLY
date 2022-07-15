@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-const kBgColor = Color.fromRGBO(253, 253, 254, 1);
+const kBgColor = Color.fromRGBO(250, 250, 250, 1);
 
 const kShadowColor = Color.fromRGBO(73, 74, 77, 0.15);
 
-const kTextAltColor = Color.fromRGBO(162, 163, 163, 1);
+// const kTextAltColor = Color.fromRGBO(162, 163, 163, 1);
+const kTextAltColor = Color.fromRGBO(189, 189, 189, 1);
 
 // const kBrandColor = Color.fromRGBO(23, 109, 234, 1);
 const kBrandColor = Color.fromRGBO(78, 7, 168, 1);

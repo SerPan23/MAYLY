@@ -16,35 +16,42 @@ class Geo {
 }
 
 class Address {
+  final String? house;
   final String? street;
   final String? contry;
   final String? city;
-  final String? zipcode;
   final Geo? geo;
 
   Address({
+    this.house,
     this.street,
     this.contry,
     this.city,
-    this.zipcode,
     this.geo,
   });
 
   Map<String, dynamic> toJson() {
     return {
+      'house': house,
       'street': street,
       'contry': contry,
       'city': city,
-      'zipcode': zipcode,
       'geo': geo?.toJson(),
     };
+  }
+
+  @override
+  String toString() {
+    return "${contry}, ${city}, ${street}, ${house}";
   }
 }
 
 class Apartment {
-  final int id, cost, raiting, ownerId;
+  final int id, cost, ownerId;
   final String title, description, publicationDate;
   final Address address;
+  final double raiting;
+  final List<String> images;
   Apartment({
     required this.id,
     required this.ownerId,
@@ -54,6 +61,7 @@ class Apartment {
     required this.address,
     required this.raiting,
     required this.publicationDate,
+    required this.images,
   });
 
   Map<String, dynamic> toJson() {
@@ -66,6 +74,7 @@ class Apartment {
       'raiting': raiting,
       'publicationDate': publicationDate,
       'address': address.toJson(),
+      'images': images,
     };
   }
 }
