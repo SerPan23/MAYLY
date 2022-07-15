@@ -42,23 +42,29 @@ class Address {
 }
 
 class Apartment {
-  final int id, cost;
-  final String title, description;
+  final int id, cost, raiting, ownerId;
+  final String title, description, publicationDate;
   final Address address;
   Apartment({
     required this.id,
+    required this.ownerId,
     required this.cost,
     required this.title,
     required this.description,
     required this.address,
+    required this.raiting,
+    required this.publicationDate,
   });
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
+      'ownerId': ownerId,
       'cost': cost,
       'title': title,
       'description': description,
+      'raiting': raiting,
+      'publicationDate': publicationDate,
       'address': address.toJson(),
     };
   }
