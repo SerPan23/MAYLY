@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mayly_client/constants.dart';
 import 'package:mayly_client/controllers/MainPageController.dart';
+import 'package:mayly_client/pages/FavouritesPage.dart';
 import 'package:mayly_client/widgets/BottomNavigation.dart';
 
 import 'SearchPage.dart';
@@ -26,9 +27,7 @@ class MainPage extends StatelessWidget {
                 index: controller.tabIndex,
                 children: [
                   SearchPage(),
-                  Container(
-                    child: Center(child: Text("Избранное")),
-                  ),
+                  FavouritesPage(),
                   Container(
                     child: Center(child: Text("Поездки")),
                   ),
