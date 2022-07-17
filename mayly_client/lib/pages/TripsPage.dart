@@ -20,7 +20,7 @@ class TripsPage extends StatelessWidget {
           appBar: AppBar(
             elevation: 0,
             centerTitle: true,
-            toolbarHeight: 60.h,
+            toolbarHeight: 50.h,
             backgroundColor: Colors.white,
             systemOverlayStyle: kTransparentUiOverlay,
             title: Text(
@@ -32,15 +32,16 @@ class TripsPage extends StatelessWidget {
               ),
             ),
             actions: [
-              TextButton(
-                style: ButtonStyle(
-                  overlayColor: MaterialStateProperty.all(Colors.transparent),
-                ),
-                onPressed: () {},
-                child: Text(
-                  "Фильтры",
-                  style: TextStyle(
-                    fontSize: 16.sp,
+              Padding(
+                padding: EdgeInsets.only(right: 16.w),
+                child: InkWell(
+                  highlightColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Icon(
+                    CupertinoIcons.line_horizontal_3_decrease,
                     color: kBrandColor,
                   ),
                 ),
