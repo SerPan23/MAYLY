@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:mayly_client/constants.dart';
 import 'package:mayly_client/controllers/MainPageController.dart';
 import 'package:mayly_client/pages/FavouritesPage.dart';
+import 'package:mayly_client/pages/TripsPage.dart';
 import 'package:mayly_client/widgets/BottomNavigation.dart';
 
 import 'SearchPage.dart';
@@ -28,9 +29,7 @@ class MainPage extends StatelessWidget {
                 children: [
                   SearchPage(),
                   FavouritesPage(),
-                  Container(
-                    child: Center(child: Text("Поездки")),
-                  ),
+                  TripsPage(),
                   Container(
                     child: Center(child: Text("Сообщения")),
                   ),
