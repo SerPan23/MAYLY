@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:mayly_client/constants.dart';
 import 'package:mayly_client/models/ApartmentModel.dart';
 import 'package:mayly_client/pages/ApartmentPage.dart';
+import 'package:mayly_client/widgets/ElevatedContainer.dart';
 
 class MiniApartmentBloc extends StatelessWidget {
   const MiniApartmentBloc({Key? key, required this.apartment})
@@ -14,20 +15,21 @@ class MiniApartmentBloc extends StatelessWidget {
   final Apartment apartment;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ElevatedContainer(
       // width: 110.w,
       // height: 177.h,
-      width: 140.w,
-      height: 190.h,
+      width: 150.w,
+      height: 215.h,
       margin: EdgeInsets.only(
-        right: 16.w,
+        right: 20.w,
+        top: 10.h,
+        bottom: 10.h,
       ),
+      borderRadius: BorderRadius.all(Radius.circular(8.r)),
       child: OpenContainer(
         tappable: false,
-        closedShape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(0),
-          ),
+        closedShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8.r)),
         ),
         closedColor: Colors.white,
         closedElevation: 0,
@@ -58,36 +60,48 @@ class MiniApartmentBloc extends StatelessWidget {
                     ),
                   ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      apartment.title,
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      overflow: TextOverflow.clip,
-                      maxLines: 2,
-                    ),
-                    Container(
-                      height: 20.h,
-                      child: StarRating(
-                        rating: apartment.raiting,
-                      ),
-                    ),
-                    Container(
-                      height: 20.h,
-                      child: Text(
-                        "от ${apartment.cost}/сут",
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w600,
+                SizedBox(height: 5.h),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 3.w,
+                    right: 3.w,
+                    bottom: 1.h,
+                  ),
+                  child: Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          child: Text(
+                            apartment.title,
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            overflow: TextOverflow.clip,
+                            maxLines: 2,
+                          ),
                         ),
-                      ),
+                        Container(
+                          height: 20.h,
+                          child: StarRating(
+                            rating: apartment.raiting,
+                          ),
+                        ),
+                        Container(
+                          height: 20.h,
+                          child: Text(
+                            "от ${apartment.cost}/сут",
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),
