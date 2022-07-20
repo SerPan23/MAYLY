@@ -23,14 +23,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-aak8oxn6pulqd=w3*^z0^ty_&!8l2w)+42opa2fzf8%j=mrq&x'
 
 
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = 'smtp.yandex.ru'
+# EMAIL_PORT = 465
+# EMAIL_HOST_USER = 'admin@celevik.site'
+# EMAIL_HOST_PASSWORD = 'Ewqdsacxz!23'
+# EMAIL_USE_SSL = True
+# EMAIL_USE_TLS = False
+# DEFAULT_FROM_EMAIL = 'admin@celevik.site'
+# EMAIL_TOPIC = 'MAYLY'
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'admin@celevik.site'
-EMAIL_HOST_PASSWORD = 'Ewqdsacxz!23'
+EMAIL_HOST_USER = 'admin@mayly.ru'
+EMAIL_HOST_PASSWORD = 'admMayly321'
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'admin@celevik.site'
+DEFAULT_FROM_EMAIL = 'admin@mayly.ru'
 EMAIL_TOPIC = 'MAYLY'
 
 
