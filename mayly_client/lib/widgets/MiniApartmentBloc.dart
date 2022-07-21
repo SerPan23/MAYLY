@@ -8,6 +8,7 @@ import 'package:mayly_client/constants.dart';
 import 'package:mayly_client/models/ApartmentModel.dart';
 import 'package:mayly_client/pages/ApartmentPage.dart';
 import 'package:mayly_client/widgets/ElevatedContainer.dart';
+import 'package:mayly_client/widgets/StarRatingBloc.dart';
 
 class MiniApartmentBloc extends StatelessWidget {
   const MiniApartmentBloc({Key? key, required this.apartment})
@@ -61,13 +62,14 @@ class MiniApartmentBloc extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 5.h),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 3.w,
-                    right: 3.w,
-                    bottom: 1.h,
-                  ),
-                  child: Expanded(
+                Container(
+                  height: 76.h,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: 3.w,
+                      right: 3.w,
+                      bottom: 1.h,
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,48 +109,6 @@ class MiniApartmentBloc extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class StarRating extends StatelessWidget {
-  final double rating;
-
-  StarRating({this.rating = .0});
-
-  Widget buildStar(BuildContext context, int index) {
-    Icon icon;
-    if (index >= rating) {
-      icon = Icon(
-        // CupertinoIcons.star_fill,
-        // color: kTextAltColor,
-        CupertinoIcons.star,
-        color: kBrandColor,
-        size: 17.r,
-      );
-    } else if (index > rating - 1 && index < rating) {
-      icon = Icon(
-        CupertinoIcons.star_lefthalf_fill,
-        color: kBrandColor,
-        size: 17.r,
-      );
-    } else {
-      icon = Icon(
-        CupertinoIcons.star_fill,
-        color: kBrandColor,
-        size: 17.r,
-      );
-    }
-    return icon;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: List.generate(
-        5,
-        (index) => buildStar(context, index),
       ),
     );
   }

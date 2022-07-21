@@ -8,6 +8,7 @@ import 'package:mayly_client/constants.dart';
 import 'package:mayly_client/models/ApartmentModel.dart';
 import 'package:mayly_client/pages/ApartmentPage.dart';
 import 'package:mayly_client/widgets/ElevatedContainer.dart';
+import 'package:mayly_client/widgets/StarRatingBloc.dart';
 
 class ApartmentBloc extends StatelessWidget {
   const ApartmentBloc({Key? key, required this.apartment}) : super(key: key);
@@ -196,48 +197,6 @@ class ApartmentBloc extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class StarRating extends StatelessWidget {
-  final double rating;
-
-  StarRating({this.rating = .0});
-
-  Widget buildStar(BuildContext context, int index) {
-    Icon icon;
-    if (index >= rating) {
-      icon = Icon(
-        // CupertinoIcons.star_fill,
-        // color: kTextAltColor,
-        CupertinoIcons.star,
-        color: kBrandColor,
-        size: 17.r,
-      );
-    } else if (index > rating - 1 && index < rating) {
-      icon = Icon(
-        CupertinoIcons.star_lefthalf_fill,
-        color: kBrandColor,
-        size: 17.r,
-      );
-    } else {
-      icon = Icon(
-        CupertinoIcons.star_fill,
-        color: kBrandColor,
-        size: 17.r,
-      );
-    }
-    return icon;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: List.generate(
-        5,
-        (index) => buildStar(context, index),
-      ),
     );
   }
 }
