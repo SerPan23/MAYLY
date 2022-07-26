@@ -16,7 +16,7 @@ class Apartment(models.Model):
     hotel_id = models.CharField("hotel_id", default='', blank=True, max_length=50)
     address = models.TextField("Адрес", default='', blank=True)
     cost = models.IntegerField('Цена', default=1)
-    owner_email = models.EmailField('Email хозяина', default='')
+    owner_email = models.EmailField('Email хозяина', default='', blank=True)
     are_we_intermediary = models.BooleanField("Мы посредник?", default=False)
     owner_contacts = models.TextField('Контакты хозяина', default='', blank=True)
 

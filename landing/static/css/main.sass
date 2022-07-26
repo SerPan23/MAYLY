@@ -7,6 +7,7 @@ $textColor: #292C33
 $textColor2: #424347
 $purpleColor: #7A7DF5
 $shadowColor: rgba(125,143,179,0.15)
+$hoverShadowColor: rgba(125,143,179,0.35)
 $dangerColor: #BB2124
 $light_red: #FFEBEE
 
@@ -64,6 +65,8 @@ nav
 
 
 .advertisement-card
+  &:hover
+    box-shadow: 0 2px 66px $hoverShadowColor
   position: relative
   min-height: 345px
   max-height: 345px
@@ -83,18 +86,24 @@ nav
       max-height: 210px
   .name
     color: $textColor
-    max-height: 30px
+    max-height: 45px
     min-height: 30px
     overflow: hidden
     margin-bottom: 0
   .address-box
-    margin: 5px 0
-    max-height: 40px
-    min-height: 40px
+    margin: 0 0 5px
+    max-height: 45px
+    min-height: 45px
     overflow: hidden
     color: $textColor2
     .address
       color: $purpleColor
+  .cost
+    color: $textColor
+    max-height: 30px
+    min-height: 30px
+    overflow: hidden
+    margin-bottom: 0
   .more-detailed
     text-decoration: underline
     color: $textColor2

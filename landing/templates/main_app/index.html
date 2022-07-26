@@ -14,7 +14,7 @@
         <h2 class="text-center mb-3">Объявления</h2>
         <div class="row">
             {% for apartment in apartments %}
-                <div class="col-12 col-md-6 col-lg-4 col-xxl-3 mb-5">
+                <a href="/advertisement/{{ apartment.id }}" class="col-12 col-md-6 col-lg-4 col-xxl-3 mb-5" style="cursor: pointer;">
                     <div class="card advertisement-card" style="width: 18rem;">
                         {% with apartment.images.all|first as img %}
                             <div class="img-box">
@@ -22,14 +22,15 @@
                             </div>
                         {% endwith %}
                         <div class="card-body">
-                            <h5 class="card-title name">{{ apartment.name }}</h5>
+                            <h6 class="card-title name">{{ apartment.name }}</h6>
                             <p class="card-text address-box">
                                 <span class="address">{{ apartment.address }}</span>
                             </p>
+                            <h6 class="card-title cost">{{ apartment.cost }} руб/ночь</h6>
                         </div>
-                        <a href="/advertisement/{{ apartment.id }}" class="more-detailed">Подробнее</a>
+<!--                        <a href="/advertisement/{{ apartment.id }}" class="more-detailed">Подробнее</a>-->
                     </div>
-                </div>
+                </a>
             {% empty %}
                 <h3 class="text-center">В данный момент все жильё к сожалению занято</h3>
             {% endfor %}

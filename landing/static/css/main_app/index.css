@@ -80,6 +80,9 @@ nav .dropdown-item {
   padding: 0;
   text-align: center;
 }
+.advertisement-card:hover {
+  box-shadow: 0 2px 66px rgba(125, 143, 179, 0.35);
+}
 .advertisement-card .img-box {
   min-height: 210px;
   max-height: 210px;
@@ -91,20 +94,27 @@ nav .dropdown-item {
 }
 .advertisement-card .name {
   color: #292C33;
-  max-height: 30px;
+  max-height: 45px;
   min-height: 30px;
   overflow: hidden;
   margin-bottom: 0;
 }
 .advertisement-card .address-box {
-  margin: 5px 0;
-  max-height: 40px;
-  min-height: 40px;
+  margin: 0 0 5px;
+  max-height: 45px;
+  min-height: 45px;
   overflow: hidden;
   color: #424347;
 }
 .advertisement-card .address-box .address {
   color: #7A7DF5;
+}
+.advertisement-card .cost {
+  color: #292C33;
+  max-height: 30px;
+  min-height: 30px;
+  overflow: hidden;
+  margin-bottom: 0;
 }
 .advertisement-card .more-detailed {
   text-decoration: underline;
