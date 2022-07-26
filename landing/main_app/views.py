@@ -29,7 +29,7 @@ months = {
 def index(request):
     res_data = {'apartments': Apartment.objects.filter(is_full=False).exclude(type='Room_in_hotel')}
     # for i in res_data['apartments']:
-        # print(i.id, i.name)
+    # print(i.id, i.name)
     return render(request, 'main_app/index.html', res_data)
 
 
@@ -66,13 +66,20 @@ def book(request, pk):
             apr_name = h.name + " (" + apartment.name + ")"
         else:
             apr_name = apartment.name
-        owner_message = 'Пользователь: ' + email + ' забронировал у вас '+ apr_name +'.\nДаты брони: ' + sdate + ' - ' \
-            + edate + '\nЕсли по каким-то причинам вас не устраивают эти даты напишите нам igracom@yandex.ru'
-        send_mail(settings.EMAIL_TOPIC, owner_message,
-                  settings.EMAIL_HOST_USER, [apartment.owner_email])
+        owner_message = 'Пользователь: ' + email + ' забронировал у вас ' + apr_name + '.\nДаты брони: ' + sdate + ' - ' \
+                        + edate + '\nСсылка на объявление: https://mayly.ru/advertisement/' + str(apartment.id) + '/' \
+                        + '\nЕсли по каким-то причинам вас не устраивают эти даты напишите нам support@mayly.ru'
+        if apartment.are_we_intermediary:
+            owner_message += '\n\n-------\nКонтакты хозяина:\n' + apartment.owner_contacts
+            send_mail(settings.EMAIL_TOPIC, owner_message,
+                      settings.EMAIL_HOST_USER, ['support@mayly.ru'])
+        else:
+            send_mail(settings.EMAIL_TOPIC, owner_message,
+                      settings.EMAIL_HOST_USER, [apartment.owner_email])
 
         guest_message = 'Вы забронировали ' + apr_name + '.\nДаты брони: ' + sdate + ' - ' + edate \
-                  + '\nЕсли Вы передумали приезжать в эти даты напишите нам igracom@yandex.ru'
+                        + '\nСсылка на объявление: https://mayly.ru/advertisement/' + str(apartment.id) + '/' \
+                        + '\nЕсли Вы передумали приезжать в эти даты напишите нам support@mayly.ru'
         send_mail(settings.EMAIL_TOPIC, guest_message,
                   settings.EMAIL_HOST_USER, [email])
     return HttpResponseRedirect("/")
