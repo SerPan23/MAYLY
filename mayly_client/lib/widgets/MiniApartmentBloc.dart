@@ -94,7 +94,7 @@ class MiniApartmentBloc extends StatelessWidget {
                         Container(
                           height: 20.h,
                           child: Text(
-                            "от ${apartment.cost}/сут",
+                            "${apartment.cost}₽ ночь",
                             style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.w600,

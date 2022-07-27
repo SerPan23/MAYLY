@@ -9,7 +9,7 @@ class BaseButton extends StatelessWidget {
     required this.width,
     required this.height,
     this.margin,
-    required this.color,
+    this.color,
     required this.text,
     this.padding,
     this.action,
@@ -18,7 +18,7 @@ class BaseButton extends StatelessWidget {
   final double height;
   final dynamic margin;
   final dynamic padding;
-  final Color color;
+  final Color? color;
   final Widget text;
   final dynamic action;
   @override
@@ -27,7 +27,7 @@ class BaseButton extends StatelessWidget {
       width: width,
       height: height,
       margin: margin,
-      color: color,
+      color: color ?? kBrandColor,
       shadowcolor: kShadowColor,
       borderRadius: BorderRadius.all(Radius.circular(30.r)),
       child: Material(

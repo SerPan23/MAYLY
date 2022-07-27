@@ -25,29 +25,29 @@ class TripsPage extends StatelessWidget {
             backgroundColor: Colors.white,
             systemOverlayStyle: kTransparentUiOverlay,
             title: Text(
-              "История",
+              "Поездки",
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 30.sp,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            actions: [
-              Padding(
-                padding: EdgeInsets.only(right: 16.w),
-                child: InkWell(
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Icon(
-                    CupertinoIcons.line_horizontal_3_decrease,
-                    color: kBrandColor,
-                  ),
-                ),
-              ),
-            ],
+            // actions: [
+            //   Padding(
+            //     padding: EdgeInsets.only(right: 16.w),
+            //     child: InkWell(
+            //       highlightColor: Colors.transparent,
+            //       splashColor: Colors.transparent,
+            //       onTap: () {
+            //         Get.back();
+            //       },
+            //       child: Icon(
+            //         CupertinoIcons.line_horizontal_3_decrease,
+            //         color: kBrandColor,
+            //       ),
+            //     ),
+            //   ),
+            // ],
           ),
           body: Center(
             child: SingleChildScrollView(

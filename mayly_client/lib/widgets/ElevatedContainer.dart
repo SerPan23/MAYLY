@@ -12,6 +12,7 @@ class ElevatedContainer extends StatelessWidget {
   final dynamic color;
   final dynamic shadowcolor;
   final BorderRadiusGeometry? borderRadius;
+  final BoxShape? shape;
   const ElevatedContainer({
     Key? key,
     this.child,
@@ -23,6 +24,7 @@ class ElevatedContainer extends StatelessWidget {
     this.borderRadius,
     this.padding,
     this.constraints,
+    this.shape,
   }) : super(key: key);
 
   @override
@@ -43,7 +45,10 @@ class ElevatedContainer extends StatelessWidget {
             offset: const Offset(0, 0),
           ),
         ],
-        borderRadius: borderRadius ?? BorderRadius.all(Radius.circular(8.r)),
+        borderRadius: shape == null
+            ? borderRadius ?? BorderRadius.all(Radius.circular(8.r))
+            : null,
+        shape: shape ?? BoxShape.rectangle,
       ),
       child: child,
     );

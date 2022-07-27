@@ -126,16 +126,16 @@ class FullApartmentBloc extends StatelessWidget {
                                 rating: apartment.raiting,
                               ),
                             ),
-                            Container(
-                              height: 20.h,
-                              child: Text(
-                                "от ${apartment.cost}/сут",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
+                            // Container(
+                            //   height: 20.h,
+                            //   child: Text(
+                            //     "от ${apartment.cost}/сут",
+                            //     style: TextStyle(
+                            //       fontSize: 16.sp,
+                            //       fontWeight: FontWeight.w600,
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),

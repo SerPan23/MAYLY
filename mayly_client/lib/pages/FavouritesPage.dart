@@ -30,35 +30,22 @@ class FavouritesPage extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            actions: [
-              // TextButton(
-              //   style: ButtonStyle(
-              //     overlayColor: MaterialStateProperty.all(Colors.transparent),
-              //   ),
-              //   onPressed: () {},
-              //   child: Text(
-              //     "Фильтры",
-              //     style: TextStyle(
-              //       fontSize: 16.sp,
-              //       color: kBrandColor,
-              //     ),
-              //   ),
-              // ),
-              Padding(
-                padding: EdgeInsets.only(right: 16.w),
-                child: InkWell(
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Icon(
-                    CupertinoIcons.line_horizontal_3_decrease,
-                    color: kBrandColor,
-                  ),
-                ),
-              ),
-            ],
+            // actions: [
+            //   Padding(
+            //     padding: EdgeInsets.only(right: 16.w),
+            //     child: InkWell(
+            //       highlightColor: Colors.transparent,
+            //       splashColor: Colors.transparent,
+            //       onTap: () {
+            //         Get.back();
+            //       },
+            //       child: Icon(
+            //         CupertinoIcons.line_horizontal_3_decrease,
+            //         color: kBrandColor,
+            //       ),
+            //     ),
+            //   ),
+            // ],
           ),
           body: Center(
             child: SingleChildScrollView(

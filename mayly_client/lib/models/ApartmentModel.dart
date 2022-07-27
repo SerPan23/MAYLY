@@ -84,10 +84,10 @@ class Apartment {
 List<Apartment> testApartments = [
   Apartment(
     id: 0,
-    type: 'hotel',
+    type: 'room_in_hotel',
     ownerId: 0,
     cost: 3000,
-    title: "Название отеля 1",
+    title: "Название номера 1",
     description:
         'Гостиница Мир располагается в чарующем, тихом уголке города, недалеко от станции метро "Московская" и южных ворот города Санкт-Петербурга - площади Победы, всего в десяти минутах езды от аэропорта "Пулково" и пятнадцати - до Невского проспекта.',
     raiting: 4.5,
@@ -110,10 +110,10 @@ List<Apartment> testApartments = [
   ),
   Apartment(
     id: 1,
-    type: 'hotel',
+    type: 'room_in_hotel',
     ownerId: 30,
     cost: 2200,
-    title: "Название отеля 2",
+    title: "Название номера 2",
     description: "Описание",
     raiting: 5,
     publicationDate: "11.07.2022",
@@ -135,10 +135,10 @@ List<Apartment> testApartments = [
   ),
   Apartment(
     id: 2,
-    type: 'hotel',
+    type: 'house',
     ownerId: 0,
     cost: 2430,
-    title: "Название отеля 3",
+    title: "Название дома",
     description: "Описание",
     raiting: 3.5,
     publicationDate: "14.07.2022",
