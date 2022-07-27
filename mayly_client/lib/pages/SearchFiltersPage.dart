@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:mayly_client/constants.dart';
 import 'package:mayly_client/controllers/SearchFiltersPageController.dart';
 import 'package:mayly_client/controllers/SearchPageController.dart';
+import 'package:mayly_client/pages/MainPage.dart';
 import 'package:mayly_client/pages/SearchPage.dart';
 import 'package:mayly_client/widgets/Buttons.dart';
 import 'package:mayly_client/widgets/ElevatedContainer.dart';
@@ -174,8 +175,15 @@ class SearchFiltersPage extends StatelessWidget {
                   height: 50.h,
                   action: () {
                     Get.delete<SearchPageController>();
+                    // Get.offAll(
+                    //   () => SearchPage(),
+                    //   arguments: {
+                    //     "is_filtering": true,
+                    //     "filters": controller.filters,
+                    //   },
+                    // );
                     Get.offAll(
-                      () => SearchPage(),
+                      () => MainPage(),
                       arguments: {
                         "is_filtering": true,
                         "filters": controller.filters,
