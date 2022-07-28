@@ -47,29 +47,31 @@ class FavouritesPage extends StatelessWidget {
             //   ),
             // ],
           ),
-          body: Center(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 32.h),
-                  ),
-                  Collection(
-                    func: controller.fetchApartments(),
-                    header: "Вам понравилось",
-                  ),
-                  Collection(
-                    func: controller.fetchApartments(),
-                    header: "Специально для Вас",
-                  ),
-                  Collection(
-                    func: controller.fetchApartments(),
-                    header: "Вы часто посещаете",
-                  ),
-                ],
+          body: SafeArea(
+            child: Center(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 32.h),
+                    ),
+                    Collection(
+                      func: controller.fetchApartments(),
+                      header: "Вам понравилось",
+                    ),
+                    Collection(
+                      func: controller.fetchApartments(),
+                      header: "Специально для Вас",
+                    ),
+                    Collection(
+                      func: controller.fetchApartments(),
+                      header: "Вы часто посещаете",
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

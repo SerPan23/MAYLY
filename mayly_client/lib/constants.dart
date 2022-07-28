@@ -32,3 +32,13 @@ const kWhiteUiOverlay = SystemUiOverlayStyle(
   // For iOS (dark icons)
   statusBarBrightness: Brightness.light,
 );
+
+const kBrandColorUiOverlay = SystemUiOverlayStyle(
+  // Status bar color
+  statusBarColor: kBrandColor,
+  // Status bar brightness (optional)
+  // For Android (dark icons)
+  statusBarIconBrightness: Brightness.light,
+  // For iOS (dark icons)
+  statusBarBrightness: Brightness.dark,
+);

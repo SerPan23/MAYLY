@@ -5,6 +5,7 @@ import 'package:mayly_client/constants.dart';
 import 'package:mayly_client/controllers/MainPageController.dart';
 import 'package:mayly_client/pages/FavouritesPage.dart';
 import 'package:mayly_client/pages/TripsPage.dart';
+import 'package:mayly_client/pages/UserProfilePage.dart';
 import 'package:mayly_client/widgets/BottomNavigation.dart';
 
 import 'SearchPage.dart';
@@ -17,27 +18,17 @@ class MainPage extends StatelessWidget {
         builder: (controller) {
           return Scaffold(
             backgroundColor: kBgColor,
-            appBar: AppBar(
-              elevation: 0,
-              toolbarHeight: 0,
-              backgroundColor: Colors.white,
-              systemOverlayStyle: kWhiteUiOverlay,
-            ),
-            body: SafeArea(
-              child: IndexedStack(
-                index: controller.tabIndex,
-                children: [
-                  SearchPage(),
-                  FavouritesPage(),
-                  TripsPage(),
-                  Container(
-                    child: Center(child: Text("Сообщения")),
-                  ),
-                  Container(
-                    child: Center(child: Text("Профиль")),
-                  ),
-                ],
-              ),
+            body: IndexedStack(
+              index: controller.tabIndex,
+              children: [
+                SearchPage(),
+                FavouritesPage(),
+                TripsPage(),
+                Container(
+                  child: Center(child: Text("Сообщения")),
+                ),
+                UserProfilePage(),
+              ],
             ),
             bottomNavigationBar: BottomNavigation(),
           );

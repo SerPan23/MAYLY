@@ -38,30 +38,34 @@ class SearchPage extends StatelessWidget {
               ),
             ),
           ),
-          body: Center(
-            child: Column(
-              children: [
-                Expanded(
-                  child: FutureBuilder<List<Apartment>>(
-                    future: controller.fetchApartments(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          padding: EdgeInsets.only(top: 35.h),
-                          itemCount: snapshot.data?.length,
-                          itemBuilder: (context, index) =>
-                              ApartmentBloc(apartment: snapshot.data![index]),
-                        );
-                      } else {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                    },
+          body: SafeArea(
+            child: Center(
+              child: Column(
+                children: [
+                  Expanded(
+                    child: FutureBuilder<List<Apartment>>(
+                      future: controller.fetchApartments(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            padding: EdgeInsets.only(top: 35.h),
+                            itemCount: snapshot.data?.length,
+                            itemBuilder: (context, index) => ApartmentBloc(
+                              apartment: snapshot.data![index],
+                              filters: controller.filters,
+                            ),
+                          );
+                        } else {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );

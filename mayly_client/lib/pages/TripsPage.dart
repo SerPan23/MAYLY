@@ -49,29 +49,31 @@ class TripsPage extends StatelessWidget {
             //   ),
             // ],
           ),
-          body: Center(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 32.h),
-                  ),
-                  Collection(
-                    func: controller.fetchApartments(),
-                    header: "Текущие брони",
-                  ),
-                  Collection(
-                    func: controller.fetchApartments(),
-                    header: "Запланированные брони",
-                  ),
-                  Collection(
-                    func: controller.fetchApartments(),
-                    header: "Архив",
-                  ),
-                ],
+          body: SafeArea(
+            child: Center(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 32.h),
+                    ),
+                    Collection(
+                      func: controller.fetchApartments(),
+                      header: "Текущие брони",
+                    ),
+                    Collection(
+                      func: controller.fetchApartments(),
+                      header: "Запланированные брони",
+                    ),
+                    Collection(
+                      func: controller.fetchApartments(),
+                      header: "Архив",
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
