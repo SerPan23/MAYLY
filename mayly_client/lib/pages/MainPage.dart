@@ -27,7 +27,16 @@ class MainPage extends StatelessWidget {
                 Container(
                   child: Center(child: Text("Сообщения")),
                 ),
-                UserProfilePage(),
+                Container(
+                  child: Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Get.to(UserProfilePage());
+                      },
+                      child: Text("Посмотреть профиль"),
+                    ),
+                  ),
+                ),
               ],
             ),
             bottomNavigationBar: BottomNavigation(),

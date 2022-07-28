@@ -7,14 +7,14 @@ class MainPageController extends GetxController {
   var tabIndex = 0;
   void changeTabIndex(int index) {
     tabIndex = index;
-    toggleSatusBarColor(tabIndex);
+    // toggleSatusBarColor(tabIndex);
     update();
   }
 }
 
-void toggleSatusBarColor(int tabIndex) {
-  if (tabIndex == 4)
-    SystemChrome.setSystemUIOverlayStyle(kBrandColorUiOverlay);
-  else
-    SystemChrome.setSystemUIOverlayStyle(kWhiteUiOverlay);
-}
+// void toggleSatusBarColor(int tabIndex) {
+//   if (tabIndex == 4)
+//     SystemChrome.setSystemUIOverlayStyle(kBrandColorUiOverlay);
+//   else
+//     SystemChrome.setSystemUIOverlayStyle(kWhiteUiOverlay);
+// }
