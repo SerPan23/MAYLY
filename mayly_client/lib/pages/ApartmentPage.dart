@@ -5,70 +5,73 @@ import 'package:get/get.dart';
 import 'package:mayly_client/constants.dart';
 import 'package:mayly_client/controllers/ApartmentPageController.dart';
 import 'package:mayly_client/models/ApartmentModel.dart';
+import 'package:mayly_client/models/FiltersModel.dart';
 import 'package:mayly_client/widgets/Buttons.dart';
 import 'package:mayly_client/widgets/ElevatedContainer.dart';
 import 'package:mayly_client/widgets/FullApartmentBloc.dart';
 import 'package:mayly_client/widgets/ReviewBlock.dart';
 
 class ApartmentPage extends StatelessWidget {
-  const ApartmentPage({Key? key, required this.apartment}) : super(key: key);
+  const ApartmentPage({Key? key, required this.apartment, this.filters})
+      : super(key: key);
   final Apartment apartment;
+  final Filters? filters;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kBgColor,
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        toolbarHeight: 50.h,
-        backgroundColor: Colors.transparent,
-        systemOverlayStyle: kTransparentUiOverlay,
-        leading: InkWell(
-          highlightColor: Colors.transparent,
-          splashColor: Colors.transparent,
-          onTap: () {
-            Get.back();
-          },
-          child: const Icon(
-            CupertinoIcons.back,
-            color: Colors.black,
-          ),
-        ),
-        actionsIconTheme: IconThemeData(color: Colors.black, size: 25.r),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              print("Tap on share");
-            },
-            child: Container(
-              margin: EdgeInsets.only(right: 15.w),
-              child: Center(
-                child: Icon(
-                  CupertinoIcons.share,
-                ),
+    return GetBuilder<ApartmentPageController>(
+      init: ApartmentPageController(apartment: apartment, filters: filters),
+      builder: (controller) {
+        return Scaffold(
+          backgroundColor: kBgColor,
+          appBar: AppBar(
+            elevation: 0,
+            centerTitle: true,
+            toolbarHeight: 50.h,
+            backgroundColor: Colors.transparent,
+            systemOverlayStyle: kTransparentUiOverlay,
+            leading: InkWell(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              onTap: () {
+                Get.back();
+              },
+              child: const Icon(
+                CupertinoIcons.back,
+                color: Colors.black,
               ),
             ),
-          ),
-          GestureDetector(
-            onTap: () {
-              print("Tap on like");
-            },
-            child: Container(
-              margin: EdgeInsets.only(right: 15.w),
-              child: Center(
-                child: Icon(
-                  CupertinoIcons.heart,
+            actionsIconTheme: IconThemeData(color: Colors.black, size: 25.r),
+            actions: [
+              GestureDetector(
+                onTap: () {
+                  print("Tap on share");
+                },
+                child: Container(
+                  margin: EdgeInsets.only(right: 15.w),
+                  child: Center(
+                    child: Icon(
+                      CupertinoIcons.share,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              GestureDetector(
+                onTap: () {
+                  print("Tap on like");
+                },
+                child: Container(
+                  margin: EdgeInsets.only(right: 15.w),
+                  child: Center(
+                    child: Icon(
+                      CupertinoIcons.heart,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-      body: SafeArea(
-        child: GetBuilder<ApartmentPageController>(
-          init: ApartmentPageController(apartment: apartment),
-          builder: (controller) {
-            return SingleChildScrollView(
+          body: SafeArea(
+            child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Padding(
                 padding: EdgeInsets.only(
@@ -78,7 +81,7 @@ class ApartmentPage extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 16.h),
-                    FullApartmentBloc(apartment: apartment),
+                    FullApartmentBloc(apartment: controller.apartment),
                     ElevatedContainer(
                       width: double.infinity,
                       constraints: BoxConstraints(minHeight: 50.h),
@@ -147,11 +150,13 @@ class ApartmentPage extends StatelessWidget {
                   ],
                 ),
               ),
-            );
-          },
-        ),
-      ),
-      bottomNavigationBar: BottomBookBar(),
+            ),
+          ),
+          bottomNavigationBar: BottomBookBar(
+            controller: controller,
+          ),
+        );
+      },
     );
   }
 }
@@ -159,8 +164,9 @@ class ApartmentPage extends StatelessWidget {
 class BottomBookBar extends StatelessWidget {
   const BottomBookBar({
     Key? key,
+    required this.controller,
   }) : super(key: key);
-
+  final ApartmentPageController controller;
   @override
   Widget build(BuildContext context) {
     return ElevatedContainer(
@@ -177,18 +183,34 @@ class BottomBookBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "3000₽ ночь",
+                    "${controller.apartment.cost}₽ ночь",
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      print("tap on date");
+                    onTap: () async {
+                      final picked = await showDateRangePicker(
+                        initialEntryMode: DatePickerEntryMode.calendarOnly,
+                        locale: const Locale('ru'),
+                        context: Get.context!,
+                        lastDate: DateTime(2030),
+                        firstDate: DateTime.now(),
+                        currentDate: DateTime.now(),
+                        initialDateRange: controller.makeDateRange(),
+                      );
+                      if (picked != null) {
+                        // print(picked.start);
+                        // print(picked.end);
+                        // print(picked.toString());
+                        controller.selectDate(picked);
+                      }
                     },
                     child: Text(
-                      "22.07.2022 - 24.07.2022",
+                      controller.filters?.startDate == null
+                          ? "даты не выбраны"
+                          : "${controller.filters!.startDate} - ${controller.filters!.endDate}",
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w500,

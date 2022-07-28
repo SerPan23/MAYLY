@@ -136,6 +136,7 @@ class SearchFiltersPage extends StatelessWidget {
                           lastDate: DateTime(2030),
                           firstDate: DateTime.now(),
                           currentDate: DateTime.now(),
+                          initialDateRange: controller.makeDateRange(),
                         );
                         if (picked != null) {
                           // print(picked.start);

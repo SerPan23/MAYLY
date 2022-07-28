@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mayly_client/controllers/SearchPageController.dart';
 import 'package:mayly_client/models/FiltersModel.dart';
@@ -26,6 +27,16 @@ class SearchFiltersPageController extends GetxController {
     filters.startDate = t1[2].split(' ')[0] + '.' + t1[1] + '.' + t1[0];
     filters.endDate = t2[2].split(' ')[0] + '.' + t2[1] + '.' + t2[0];
     update();
+  }
+
+  DateTimeRange? makeDateRange() {
+    if (filters?.startDate == null) return null;
+
+    DateTime sDate = DateTime.parse(
+        filters!.startDate.toString().split('.').reversed.join());
+    DateTime eDate =
+        DateTime.parse(filters!.endDate.toString().split('.').reversed.join());
+    return DateTimeRange(start: sDate, end: eDate);
   }
 
   void updatePlace(dynamic placetmp) {

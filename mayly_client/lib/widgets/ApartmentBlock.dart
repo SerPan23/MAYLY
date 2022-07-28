@@ -6,13 +6,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mayly_client/constants.dart';
 import 'package:mayly_client/models/ApartmentModel.dart';
+import 'package:mayly_client/models/FiltersModel.dart';
 import 'package:mayly_client/pages/ApartmentPage.dart';
 import 'package:mayly_client/widgets/ElevatedContainer.dart';
 import 'package:mayly_client/widgets/StarRatingBloc.dart';
 
 class ApartmentBloc extends StatelessWidget {
-  const ApartmentBloc({Key? key, required this.apartment}) : super(key: key);
+  const ApartmentBloc(
+      {Key? key, required this.apartment, required this.filters})
+      : super(key: key);
   final Apartment apartment;
+  final Filters filters;
   @override
   Widget build(BuildContext context) {
     final CarouselController _controller = CarouselController();
@@ -40,7 +44,8 @@ class ApartmentBloc extends StatelessWidget {
             openColor: Colors.white,
             transitionType: ContainerTransitionType.fadeThrough,
             transitionDuration: const Duration(milliseconds: 500),
-            openBuilder: (context, _) => ApartmentPage(apartment: apartment),
+            openBuilder: (context, _) =>
+                ApartmentPage(apartment: apartment, filters: filters),
             closedBuilder: (context, action) => Material(
               color: Colors.transparent,
               child: InkWell(
