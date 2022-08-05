@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:mayly_client/constants.dart';
 import 'package:mayly_client/controllers/MainPageController.dart';
 import 'package:mayly_client/pages/FavouritesPage.dart';
+import 'package:mayly_client/pages/MyProfilePage.dart';
 import 'package:mayly_client/pages/TripsPage.dart';
 import 'package:mayly_client/pages/UserProfilePage.dart';
 import 'package:mayly_client/widgets/BottomNavigation.dart';
@@ -27,16 +28,7 @@ class MainPage extends StatelessWidget {
                 Container(
                   child: Center(child: Text("Сообщения")),
                 ),
-                Container(
-                  child: Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Get.to(UserProfilePage());
-                      },
-                      child: Text("Посмотреть профиль"),
-                    ),
-                  ),
-                ),
+                MyProfilePage(),
               ],
             ),
             bottomNavigationBar: BottomNavigation(),
