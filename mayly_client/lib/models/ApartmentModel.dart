@@ -1,3 +1,5 @@
+import 'package:mayly_client/models/UserModel.dart';
+
 class Geo {
   final double lat;
   final double lng;
@@ -47,16 +49,17 @@ class Address {
 }
 
 class Apartment {
-  final int id, cost, ownerId;
+  final int id, cost;
   final String title, description, publicationDate, type;
   final Address address;
   final double raiting;
+  final User owner;
 
   final List<String> images;
   Apartment({
     required this.id,
     required this.type,
-    required this.ownerId,
+    required this.owner,
     required this.cost,
     required this.title,
     required this.description,
@@ -69,7 +72,7 @@ class Apartment {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'ownerId': ownerId,
+      'ownerId': owner.toJson(),
       'cost': cost,
       'title': title,
       'description': description,
@@ -85,7 +88,7 @@ List<Apartment> testApartments = [
   Apartment(
     id: 0,
     type: 'room_in_hotel',
-    ownerId: 0,
+    owner: testUser,
     cost: 3000,
     title: "Название номера 1",
     description:
@@ -111,7 +114,7 @@ List<Apartment> testApartments = [
   Apartment(
     id: 1,
     type: 'room_in_hotel',
-    ownerId: 30,
+    owner: testUser,
     cost: 2200,
     title: "Название номера 2",
     description: "Описание",
@@ -136,7 +139,7 @@ List<Apartment> testApartments = [
   Apartment(
     id: 2,
     type: 'house',
-    ownerId: 0,
+    owner: testUser,
     cost: 2430,
     title: "Название дома",
     description: "Описание",
