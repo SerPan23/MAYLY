@@ -6,6 +6,7 @@ import 'package:mayly_client/constants.dart';
 import 'package:mayly_client/controllers/ApartmentPageController.dart';
 import 'package:mayly_client/models/ApartmentModel.dart';
 import 'package:mayly_client/models/FiltersModel.dart';
+import 'package:mayly_client/models/ReviewModel.dart';
 import 'package:mayly_client/widgets/Buttons.dart';
 import 'package:mayly_client/widgets/ElevatedContainer.dart';
 import 'package:mayly_client/widgets/FullApartmentBloc.dart';
@@ -132,14 +133,17 @@ class ApartmentPage extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              constraints:
-                                  BoxConstraints(maxHeight: (86 * 3).h),
+                              constraints: BoxConstraints(
+                                  maxHeight: (86 * testReviews.length).h),
                               child: ListView.builder(
                                 physics: const BouncingScrollPhysics(),
-                                itemCount: 3,
+                                itemCount: testReviews.length,
                                 itemBuilder: (context, index) {
                                   return ReviewBlock(
-                                      index: index, itemCount: 3);
+                                    index: index,
+                                    itemCount: testReviews.length,
+                                    review: testReviews[index],
+                                  );
                                 },
                               ),
                             ),

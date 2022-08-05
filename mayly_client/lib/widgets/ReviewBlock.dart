@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mayly_client/constants.dart';
+import 'package:mayly_client/models/ReviewModel.dart';
 import 'package:mayly_client/widgets/StarRatingBloc.dart';
 
 class ReviewBlock extends StatelessWidget {
@@ -8,8 +9,10 @@ class ReviewBlock extends StatelessWidget {
     Key? key,
     required this.index,
     required this.itemCount,
+    required this.review,
   }) : super(key: key);
   final int index, itemCount;
+  final Review review;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,7 @@ class ReviewBlock extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(8.r)),
                 child: Image.network(
-                  "https://img.freepik.com/free-photo/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction_176420-15187.jpg?w=2000&t=st=1658422536~exp=1658423136~hmac=372ed1938ef0c90a0bc1bf1eea2458f2d090798866a3b54960d9b756b3aa2c66",
+                  review.owner.image,
                   fit: BoxFit.cover,
                   height: 240,
                   width: double.infinity,
@@ -53,7 +56,7 @@ class ReviewBlock extends StatelessWidget {
                   children: [
                     Container(
                       child: Text(
-                        "Username",
+                        review.owner.login,
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w600,
@@ -63,13 +66,13 @@ class ReviewBlock extends StatelessWidget {
                     Spacer(),
                     Container(
                       child: StarRating(
-                        rating: 4.2,
+                        rating: review.raiting,
                       ),
                     ),
                     Spacer(),
                     Container(
                       child: Text(
-                        "2 мин назад",
+                        review.publicationDate,
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w400,
@@ -82,7 +85,7 @@ class ReviewBlock extends StatelessWidget {
                 SizedBox(height: 10.h),
                 Container(
                   child: Text(
-                    "Все круто! Понравилось местоположение гостиницы!",
+                    review.text,
                   ),
                 ),
                 if (itemCount - 1 != index)

@@ -24,3 +24,27 @@ class Review {
     };
   }
 }
+
+List<Review> testReviews = [
+  Review(
+    id: 0,
+    owner: testUser,
+    raiting: 4.3,
+    text: "Все круто! Понравилось местоположение гостиницы!",
+    publicationDate: "2 мин назад",
+  ),
+  Review(
+    id: 0,
+    owner: testUser,
+    raiting: 4.7,
+    text: "Все круто! Понравилось местоположение гостиницы!",
+    publicationDate: "2 мин назад",
+  ),
+  Review(
+    id: 0,
+    owner: testUser,
+    raiting: 4.0,
+    text: "Все круто! Понравилось местоположение гостиницы!",
+    publicationDate: "2 мин назад",
+  ),
+];
